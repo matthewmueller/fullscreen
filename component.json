@@ -1,0 +1,18 @@
+{
+  "name": "fullscreen",
+  "repo": "matthewmueller/fullscreen",
+  "description": "faux fullscreen implementation. cross-browser compatible and less restrictive than actual fullscreen API",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+    "component/emitter": "*",
+    "component/classes": "*",
+    "component/event" : "*"
+  },
+  "development": {},
+  "license": "MIT",
+  "scripts": [
+    "index.js"
+  ],
+  "styles": [ "fullscreen.css" ]
+}

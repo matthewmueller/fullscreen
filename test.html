@@ -1,0 +1,19 @@
+<html>
+<head>
+  <title>fullscreen component</title>
+  <link rel="stylesheet" href="../build/build.css">
+</head>
+<body>
+  <h1>fullscreen component</h1>
+  <textarea id="content" cols="30" rows="10"></textarea>
+  <button onclick="fullscreen.open()">Go fullscreen</button>
+  <script src="../build/build.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    var Fullscreen = require('fullscreen'),
+        textarea = document.getElementById('content');
+
+    var fullscreen = Fullscreen(textarea);
+
+  </script>
+</body>
+</html>
