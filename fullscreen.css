@@ -1,4 +1,4 @@
-.fullscreen {
+.is-fullscreen {
   position: absolute !important;
   z-index: 9999;
   top: 0;
