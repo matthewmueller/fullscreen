@@ -37,9 +37,9 @@ Emitter(Fullscreen.prototype);
 
 Fullscreen.prototype.open = function() {
   events.bind(this.el, 'keydown', this.keydown.bind(this));
-  this.emit('open');
   document.body.appendChild(this.el);
   classes(this.el).add('is-fullscreen');
+  this.emit('open');
   this.el.focus();
   return this;
 };
@@ -50,9 +50,9 @@ Fullscreen.prototype.open = function() {
 
 Fullscreen.prototype.close = function() {
   events.unbind(this.el);
-  this.emit('close');
-  classes(this.el).remove('is-fullscreen');
   this.parent.appendChild(this.el);
+  classes(this.el).remove('is-fullscreen');
+  this.emit('close');
   return this;
 };
 
