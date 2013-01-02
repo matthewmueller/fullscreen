@@ -2,9 +2,11 @@
  * Module dependencies
  */
 
-var Emitter = require('emitter'),
+var domify = require('domify'),
+    Emitter = require('emitter'),
     events = require('event'),
-    classes = require('classes');
+    classes = require('classes'),
+    template = require('./template');
 
 /**
  * Expose `Fullscreen`
@@ -23,6 +25,8 @@ function Fullscreen(el) {
   if(!(this instanceof Fullscreen)) return new Fullscreen(el);
   this.el = el;
   this.parent = el.parentNode;
+  this.overlay = domify(template)[0];
+  document.body.appendChild(this.overlay);
 }
 
 /**
@@ -36,9 +40,10 @@ Emitter(Fullscreen.prototype);
  */
 
 Fullscreen.prototype.open = function() {
-  events.bind(this.el, 'keydown', this.keydown.bind(this));
-  document.body.appendChild(this.el);
+  events.bind(this.overlay, 'keydown', this.keydown.bind(this));
+  this.overlay.appendChild(this.el);
   classes(this.el).add('is-fullscreen');
+  classes(this.overlay).remove('hide');
   this.emit('open');
   this.el.focus();
   return this;
@@ -49,10 +54,12 @@ Fullscreen.prototype.open = function() {
  */
 
 Fullscreen.prototype.close = function() {
-  events.unbind(this.el);
+  events.unbind(this.overlay);
   this.parent.appendChild(this.el);
   classes(this.el).remove('is-fullscreen');
+  classes(this.overlay).add('hide');
   this.emit('close');
+  this.el.focus();
   return this;
 };
 

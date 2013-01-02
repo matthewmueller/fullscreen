@@ -22,6 +22,11 @@ setTimeout(function() {
 
     $ component install matthewmueller/fullscreen
 
+## Events
+
+* `open`: emitted when we open the element in fullscreen mode
+* `close`: emitted when we close the element's fullscreen mode
+
 ## API
 
 ### Fullscreen(el)

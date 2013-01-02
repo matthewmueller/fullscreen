@@ -1,0 +1,1 @@
+module.exports = '<div id="fullscreen" class="hide"></div>\n';

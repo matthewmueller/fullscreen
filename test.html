@@ -9,6 +9,18 @@
       width: 300px;
       margin-left: 200px;
     }
+
+    textarea {
+      outline: none;
+      font: 16px "Helvetica Neue", Helvetica;
+    }
+
+    textarea.is-fullscreen {
+      max-width: 800px;
+      display: block;
+      margin: 0 auto;
+    }
+
   </style>
 </head>
 <body>
@@ -25,11 +37,6 @@
 
     var fullscreen = Fullscreen(textarea);
 
-    fullscreen.open();
-
-    setTimeout(function() {
-      fullscreen.close();
-    }, 1000);
   </script>
 </body>
 </html>
