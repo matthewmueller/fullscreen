@@ -22,6 +22,7 @@ module.exports = Fullscreen;
 function Fullscreen(el) {
   if(!(this instanceof Fullscreen)) return new Fullscreen(el);
   this.el = el;
+  this.parent = el.parentNode;
 }
 
 /**
@@ -36,6 +37,7 @@ Emitter(Fullscreen.prototype);
 
 Fullscreen.prototype.open = function() {
   events.bind(this.el, 'keydown', this.keydown.bind(this));
+  document.body.appendChild(this.el);
   classes(this.el).add('fullscreen');
   this.emit('open');
   this.el.focus();
@@ -48,11 +50,12 @@ Fullscreen.prototype.open = function() {
 Fullscreen.prototype.close = function() {
   events.unbind(this.el);
   classes(this.el).remove('fullscreen');
+  this.parent.appendChild(this.el);
   this.emit('close');
 };
 
 /**
- * Keydown
+ * keydown
  */
 
 Fullscreen.prototype.keydown = function(e) {
