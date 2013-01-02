@@ -41,6 +41,7 @@ Fullscreen.prototype.open = function() {
   classes(this.el).add('fullscreen');
   this.emit('open');
   this.el.focus();
+  return this;
 };
 
 /**
@@ -52,10 +53,13 @@ Fullscreen.prototype.close = function() {
   classes(this.el).remove('fullscreen');
   this.parent.appendChild(this.el);
   this.emit('close');
+  return this;
 };
 
 /**
  * keydown
+ *
+ * @api private
  */
 
 Fullscreen.prototype.keydown = function(e) {
