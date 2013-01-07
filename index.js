@@ -15,6 +15,12 @@ var domify = require('domify'),
 module.exports = Fullscreen;
 
 /**
+ * Overlay singleton
+ */
+
+var overlay = domify(template)[0];
+
+/**
  * Initialize `Fullscreen`
  *
  * @param {DOM Node} el
@@ -41,6 +47,8 @@ Emitter(Fullscreen.prototype);
 
 Fullscreen.prototype.open = function() {
   events.bind(this.overlay, 'keydown', this.keydown.bind(this));
+  // clear anything that was there
+  this.overlay.innerHTML = '';
   this.overlay.appendChild(this.el);
   classes(this.el).add('is-fullscreen');
   classes(this.overlay).remove('hide');
