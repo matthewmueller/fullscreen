@@ -19,6 +19,7 @@ module.exports = Fullscreen;
  */
 
 var overlay = domify(template)[0];
+document.body.appendChild(overlay);
 
 /**
  * Initialize `Fullscreen`
@@ -31,8 +32,6 @@ function Fullscreen(el) {
   if(!(this instanceof Fullscreen)) return new Fullscreen(el);
   this.el = el;
   this.parent = el.parentNode;
-  this.overlay = domify(template)[0];
-  document.body.appendChild(this.overlay);
 }
 
 /**
@@ -46,12 +45,12 @@ Emitter(Fullscreen.prototype);
  */
 
 Fullscreen.prototype.open = function() {
-  events.bind(this.overlay, 'keydown', this.keydown.bind(this));
+  events.bind(overlay, 'keydown', this.keydown.bind(this));
   // clear anything that was there
-  this.overlay.innerHTML = '';
-  this.overlay.appendChild(this.el);
+  overlay.innerHTML = '';
+  overlay.appendChild(this.el);
   classes(this.el).add('is-fullscreen');
-  classes(this.overlay).remove('hide');
+  classes(overlay).remove('hide');
   this.emit('open');
   this.el.focus();
   return this;
@@ -62,10 +61,10 @@ Fullscreen.prototype.open = function() {
  */
 
 Fullscreen.prototype.close = function() {
-  events.unbind(this.overlay);
+  events.unbind(overlay);
   this.parent.appendChild(this.el);
   classes(this.el).remove('is-fullscreen');
-  classes(this.overlay).add('hide');
+  classes(overlay).add('hide');
   this.emit('close');
   this.el.focus();
   return this;
