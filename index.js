@@ -18,7 +18,7 @@ module.exports = Fullscreen;
  * Overlay singleton
  */
 
-var overlay = domify(template)[0];
+var overlay = domify(template);
 document.body.appendChild(overlay);
 
 /**
